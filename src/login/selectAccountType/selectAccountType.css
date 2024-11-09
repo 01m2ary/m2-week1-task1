@@ -113,6 +113,13 @@ html, body {
 
 }
 
+.accountTypeCardFreelancer.selected, .accountTypeCardClient.selected {
+  border: 1px solid #3C97AF;
+  background-color: #ECF6F9;
+}
+
+
+
 .accountTypeCardFreelancer img , .accountTypeCardClient img{
   width: 36px;
   height: auto;
@@ -158,6 +165,11 @@ html, body {
 
  
 
+}
+
+.primaryButton.active {
+  background-color: #3C97AF;
+  color: white;
 }
 
 

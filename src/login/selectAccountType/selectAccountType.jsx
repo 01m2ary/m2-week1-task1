@@ -1,12 +1,20 @@
+import { useState } from "react"; // Import useState
 import Content from "../../components/content/content";
 import "./selectAccountType.css";
 import User03 from "./03_user.png";
 import User07 from "./07_user-search-01.png";
 import Vector from "./Vector.png";
-
-
+import Vector1 from "./Vector (1).png"; 
 
 const SelectAccountType = () => {
+  const [selectedAccountType, setSelectedAccountType] = useState(null); 
+  const [buttonImage, setButtonImage] = useState(Vector); 
+
+  const handleCardClick = (type) => {
+    setSelectedAccountType(type);
+    setButtonImage(Vector1); 
+  };
+
   return (
     <div className="contentSelectAccountType">
       <Content />
@@ -23,19 +31,27 @@ const SelectAccountType = () => {
           </div>
           <div className="signUpFrom">
             <div className="SelectAccountType-F-C">
-              <div className="accountTypeCardFreelancer">
-                <img src={User03} alt="User03" />
+              <div
+                className={`accountTypeCardFreelancer ${selectedAccountType === 'freelancer' ? 'selected' : ''}`}
+                onClick={() => handleCardClick('freelancer')}
+              >
+                <img src={User03} alt="Freelancer" />
                 <h1>Freelancer</h1>
                 <p>I’m a freelancer ready to work for projects</p>
               </div>
-              <div className="accountTypeCardClient">
-                <img src={User07} alt="User07" />
+              <div
+                className={`accountTypeCardClient ${selectedAccountType === 'client' ? 'selected' : ''}`}
+                onClick={() => handleCardClick('client')}
+              >
+                <img src={User07} alt="Client" />
                 <h1>Client</h1>
                 <p>I’m a client searching for talented freelancers</p>
               </div>
             </div>
-            <button className="primaryButton">
-              Next <img src={Vector} alt="Vector" />
+            <button
+              className={`primaryButton ${selectedAccountType ? 'active' : ''}`}
+            >
+              Next <img src={buttonImage} alt="Vector" /> 
             </button>
           </div>
         </div>
@@ -43,6 +59,5 @@ const SelectAccountType = () => {
     </div>
   );
 };
-
 
 export default SelectAccountType;
