@@ -1,11 +1,15 @@
-import Content from "./components/content/content";
-import Login from "./login/login";
+import Content from "./components/content/content.jsx";
+
+import SelectAccountType from "./login/selectAccountType/selectAccountType";
+
+
+
 
 
 function App() {
   return (
 
-      <Login />
+      <SelectAccountType />
 
 
 
