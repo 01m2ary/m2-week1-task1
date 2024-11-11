@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Content from "../../components/content/content";
 import "./selectAccountType.css";
 import User03 from "./03_user.png";
@@ -18,6 +18,9 @@ const SelectAccountType = () => {
   const [verificationCode, setVerificationCode] = useState("");
   const [personalInfo, setPersonalInfo] = useState({ name: "", email: "", password: "" });
   const [showPassword, setShowPassword] = useState(false);
+  const [timer, setTimer] = useState(59); // Start timer at 59 seconds
+  const [resendEnabled, setResendEnabled] = useState(false);
+  const [isResendActive, setIsResendActive] = useState(false); // For opacity effect
 
   const handleCardClick = (type) => {
     setSelectedAccountType(type);
@@ -35,6 +38,24 @@ const SelectAccountType = () => {
       console.log("Registration complete");
     }
   };
+
+  const handleResendClick = () => {
+    setTimer(59); // Reset timer to 59 seconds
+    setResendEnabled(false); // Disable resend button
+    setIsResendActive(false); // Reset opacity effect
+  };
+
+  useEffect(() => {
+    if (timer > 0 && step === 3) {
+      const interval = setInterval(() => {
+        setTimer((prev) => prev - 1);
+      }, 1000);
+      return () => clearInterval(interval);
+    } else if (timer === 0) {
+      setResendEnabled(true); // Enable the Resend button when the timer reaches 0
+      setIsResendActive(true); // Activate the effect when timer reaches zero
+    }
+  }, [timer, step]);
 
   return (
     <div className="contentSelectAccountType">
@@ -111,7 +132,7 @@ const SelectAccountType = () => {
             {step === 2 && (
               <div className="phoneNumberInput">
                 <div className="PHONE">Phone Number</div>
-                <div class="phone01">
+                <div className="phone01">
                   <div className="countryCode"> <img src={Flag} alt="Country Flag" /> +964 </div> 
                   <input
                     type="text"
@@ -119,7 +140,7 @@ const SelectAccountType = () => {
                     onChange={(e) => setPhoneNumber(e.target.value)}
                     placeholder="Enter your phone number"
                   />
-              </div>
+                </div>
               </div>
             )}
             {step === 3 && (
@@ -142,9 +163,26 @@ const SelectAccountType = () => {
                 </div>
                 <div className="timer">
                   <img src={ClockIcon} alt="Clock Icon" />
-                  <span>00:59</span>
+                  <span>{timer < 10 ? `00:0${timer}` : `00:${timer}`}</span>
                 </div>
-                <p className="message01">Didn’t receive a message? <span>Resend</span></p>
+                <p
+                  className="message01"
+                  style={{
+                    opacity: isResendActive ? 0.6 : 1, // Make it less opaque when the timer ends
+                    transition: "opacity 0.3s ease", // Smooth transition for opacity
+                  }}
+                >
+                  Didn’t receive a message? 
+                  <span
+                    onClick={resendEnabled ? handleResendClick : undefined}
+                    style={{
+                      color: resendEnabled ? "#3C97AF" : "#AFB1B6",
+                      pointerEvents: resendEnabled ? "auto" : "none", // Disable the click event if not enabled
+                    }}
+                  >
+                    Resend
+                  </span>
+                </p>
               </div>
             )}
             {step === 4 && (
@@ -189,8 +227,7 @@ const SelectAccountType = () => {
               className={`primaryButton ${((step === 1 && selectedAccountType) || (step === 2 && phoneNumber) || (step === 3 && verificationCode) || (step === 4 && personalInfo.name && personalInfo.email && personalInfo.password)) ? 'active' : ''}`}
               onClick={step === 4 ? handleCompleteClick : handleNextClick}
             >
-              {step === 1 ? "Next" : step === 2 ? "Send verification code" : step === 3 ? "Verify" : "Complete registration"}
-              <img src={buttonImage} alt="Vector" />
+              {step === 4 ? "Complete Registration" : "Next"}
             </button>
           </div>
         </div>
