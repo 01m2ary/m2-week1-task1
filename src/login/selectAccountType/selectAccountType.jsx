@@ -110,13 +110,16 @@ const SelectAccountType = () => {
             )}
             {step === 2 && (
               <div className="phoneNumberInput">
-                <div className="countryCode">+964 <img src={Flag} alt="Country Flag" /></div> 
-                <input
-                  type="text"
-                  value={phoneNumber}
-                  onChange={(e) => setPhoneNumber(e.target.value)}
-                  placeholder="Enter your phone number"
-                />
+                <div className="PHONE">Phone Number</div>
+                <div class="phone01">
+                  <div className="countryCode"> <img src={Flag} alt="Country Flag" /> +964 </div> 
+                  <input
+                    type="text"
+                    value={phoneNumber}
+                    onChange={(e) => setPhoneNumber(e.target.value)}
+                    placeholder="Enter your phone number"
+                  />
+              </div>
               </div>
             )}
             {step === 3 && (

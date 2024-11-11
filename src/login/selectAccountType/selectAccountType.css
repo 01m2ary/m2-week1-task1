@@ -154,15 +154,64 @@ html, body {
 
 .phoneNumberInput {
   display: flex;
-  gap: 10px;
+  flex-direction: column;
+  width:100%;
   margin-top: 20px;
+}
+
+.PHONE{
+  color:#0A0A0A;
+  font-size:14px;
+  font-weight: 500;
+  margin-bottom:8px;
+
+}
+.phone01{
+  display: flex;
+  gap: 10px;
   align-items: center;
+  width:100%;
+
+}
+
+.phoneNumberInput img{
+  border-radius:0;
+  width:25px;
+  height:auto;
+  object-fit: cover; 
 }
 
 .countryCode {
   display: flex;
   align-items: center;
   gap: 5px;
+  border:1px solid #EBEBEB;
+  height:20px;
+  width:90px;
+  padding-top:15px;
+  padding-bottom:15px;
+  padding-left:8px;
+  padding-right:8px;
+  border-radius: 8px;
+}
+
+.phoneNumberInput input{
+  width:calc(100% - 105px);
+  border:1px solid #EBEBEB;
+  height:20px;
+  padding-top:15px;
+  padding-bottom:15px;
+  padding-left:8px;
+  padding-right:8px;
+  border-radius: 8px;
+  outline: none;
+
+}
+
+.phoneNumberInput input::placeholder{
+  color:#D9D9D9;
+  font-size:14px;
+
 }
 
 .verificationInput {
