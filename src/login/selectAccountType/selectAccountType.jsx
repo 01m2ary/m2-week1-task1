@@ -168,7 +168,7 @@ const SelectAccountType = () => {
                 <p
                   className="message01"
                   style={{
-                    opacity: isResendActive ? 0.6 : 1, // Make it less opaque when the timer ends
+                    opacity: isResendActive ? 1 : 0.6, // Make it less opaque when the timer ends
                     transition: "opacity 0.3s ease", // Smooth transition for opacity
                   }}
                 >
@@ -176,7 +176,7 @@ const SelectAccountType = () => {
                   <span
                     onClick={resendEnabled ? handleResendClick : undefined}
                     style={{
-                      color: resendEnabled ? "#3C97AF" : "#AFB1B6",
+
                       pointerEvents: resendEnabled ? "auto" : "none", // Disable the click event if not enabled
                     }}
                   >
