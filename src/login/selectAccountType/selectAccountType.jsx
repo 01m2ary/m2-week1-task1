@@ -7,7 +7,8 @@ import Vector from "./Vector.png";
 import Vector1 from "./Vector (1).png";
 import ClockIcon from "./clock-01.png"; 
 import EyeIcon from "./Eye.png";  
-import EyeOffIcon from "./02_view-off.png";  
+import EyeOffIcon from "./02_view-off.png"; 
+import Flag from "./Flag.png";   
 
 const SelectAccountType = () => {
   const [selectedAccountType, setSelectedAccountType] = useState(null);
@@ -41,9 +42,24 @@ const SelectAccountType = () => {
       <div className="Main-Continar">
         <div className="Header">
           <div className="Steps">
-            <div className="line13" style={{ backgroundColor: "#3C97AF" }}></div>
-            <div className="line12" style={{ background: step >= 3 ? "#3C97AF" : "linear-gradient(90deg, #3C97AF 50%, #EBEBEB 50%)" }}></div>
-            <div className="line14" style={{ backgroundColor: step === 4 ? "#3C97AF" : "#EBEBEB" }}></div>
+            <div
+              className="line13"
+              style={{ backgroundColor: "#3C97AF" }}
+            ></div>
+            <div
+              className="line12"
+              style={{
+                background: step === 2
+                  ? "linear-gradient(90deg, #3C97AF 50%, #EBEBEB 50%)"
+                  : step >= 3
+                  ? "#3C97AF"
+                  : "#EBEBEB",
+              }}
+            ></div>
+            <div
+              className="line14"
+              style={{ backgroundColor: step === 4 ? "#3C97AF" : "#EBEBEB" }}
+            ></div>
           </div>
           <div className="getStarted">
             {step === 1 && (
@@ -94,7 +110,7 @@ const SelectAccountType = () => {
             )}
             {step === 2 && (
               <div className="phoneNumberInput">
-                <div className="countryCode">+1 <img src="./flag.png" alt="Country Flag" /></div> {/* تأكد من وجود صورة العلم */}
+                <div className="countryCode">+964 <img src={Flag} alt="Country Flag" /></div> 
                 <input
                   type="text"
                   value={phoneNumber}
@@ -167,7 +183,7 @@ const SelectAccountType = () => {
               </div>
             )}
             <button
-              className={`primaryButton ${((step === 2 && phoneNumber) || (step === 3 && verificationCode) || (step === 4 && personalInfo.name && personalInfo.email && personalInfo.password)) ? 'active' : ''}`}
+              className={`primaryButton ${((step === 1 && selectedAccountType) || (step === 2 && phoneNumber) || (step === 3 && verificationCode) || (step === 4 && personalInfo.name && personalInfo.email && personalInfo.password)) ? 'active' : ''}`}
               onClick={step === 4 ? handleCompleteClick : handleNextClick}
             >
               {step === 1 ? "Next" : step === 2 ? "Send verification code" : step === 3 ? "Verify" : "Complete registration"}
