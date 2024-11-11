@@ -216,23 +216,38 @@ html, body {
 
 .verificationInput {
   display: flex;
-  gap: 10px; /* Aligned inputs horizontally */
-  flex-direction: row;
+  flex-direction: column;
   align-items: center;
+  margin-top: 25px;;
+
 }
 
 .verificationBox {
+  margin-right:10px;
+  border-radius: 8px;
+
   width: 40px;
   height: 40px;
   border: 1px solid #EBEBEB;
   text-align: center;
   font-size: 18px;
+  margin-bottom: 30px;
 }
 
 .timer {
   display: flex;
   gap: 5px;
   align-items: center;
+}
+
+.message01{
+  margin-top:12px;
+  color:#AFB1B6;
+}
+
+.message01 span{
+  color:#3C97AF;
+
 }
 
 .personalInfoInput {

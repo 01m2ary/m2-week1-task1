@@ -144,7 +144,7 @@ const SelectAccountType = () => {
                   <img src={ClockIcon} alt="Clock Icon" />
                   <span>00:59</span>
                 </div>
-                <p>Didn’t receive a message? <span>Resend</span></p>
+                <p className="message01">Didn’t receive a message? <span>Resend</span></p>
               </div>
             )}
             {step === 4 && (
