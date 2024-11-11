@@ -319,3 +319,12 @@ body {
 .passwordInput input[type="text"] {
   -webkit-text-security: none; 
 }
+
+@media screen and (max-width: 700px) {
+  .classContent {
+    display: none;
+  }
+
+  
+}
+

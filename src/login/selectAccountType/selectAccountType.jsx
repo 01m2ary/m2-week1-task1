@@ -59,7 +59,7 @@ const SelectAccountType = () => {
 
   return (
     <div className="contentSelectAccountType">
-      <Content />
+      <Content className="classContent" />
       <div className="Main-Continar">
         <div className="Header">
           <div className="Steps">
