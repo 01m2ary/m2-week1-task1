@@ -6,8 +6,8 @@ import User07 from "./07_user-search-01.png";
 import Vector from "./Vector.png";
 import Vector1 from "./Vector (1).png";
 import ClockIcon from "./clock-01.png"; 
-import EyeIcon from "./Eye.png";  
-import EyeOffIcon from "./02_view-off.png"; 
+import EyeIcon from "./02_view-off.png";  
+import EyeOffIcon from "./Eye.png"; 
 import Flag from "./Flag.png";   
 
 const SelectAccountType = () => {
@@ -18,9 +18,9 @@ const SelectAccountType = () => {
   const [verificationCode, setVerificationCode] = useState("");
   const [personalInfo, setPersonalInfo] = useState({ name: "", email: "", password: "" });
   const [showPassword, setShowPassword] = useState(false);
-  const [timer, setTimer] = useState(59); // Start timer at 59 seconds
+  const [timer, setTimer] = useState(59); 
   const [resendEnabled, setResendEnabled] = useState(false);
-  const [isResendActive, setIsResendActive] = useState(false); // For opacity effect
+  const [isResendActive, setIsResendActive] = useState(false); 
 
   const handleCardClick = (type) => {
     setSelectedAccountType(type);
@@ -40,9 +40,9 @@ const SelectAccountType = () => {
   };
 
   const handleResendClick = () => {
-    setTimer(59); // Reset timer to 59 seconds
-    setResendEnabled(false); // Disable resend button
-    setIsResendActive(false); // Reset opacity effect
+    setTimer(59);
+    setResendEnabled(false); 
+    setIsResendActive(false); 
   };
 
   useEffect(() => {
@@ -52,8 +52,8 @@ const SelectAccountType = () => {
       }, 1000);
       return () => clearInterval(interval);
     } else if (timer === 0) {
-      setResendEnabled(true); // Enable the Resend button when the timer reaches 0
-      setIsResendActive(true); // Activate the effect when timer reaches zero
+      setResendEnabled(true); 
+      setIsResendActive(true); 
     }
   }, [timer, step]);
 
@@ -168,8 +168,8 @@ const SelectAccountType = () => {
                 <p
                   className="message01"
                   style={{
-                    opacity: isResendActive ? 1 : 0.6, // Make it less opaque when the timer ends
-                    transition: "opacity 0.3s ease", // Smooth transition for opacity
+                    opacity: isResendActive ? 1 : 0.6, 
+                    transition: "opacity 0.3s ease", 
                   }}
                 >
                   Didn’t receive a message? 
@@ -177,7 +177,7 @@ const SelectAccountType = () => {
                     onClick={resendEnabled ? handleResendClick : undefined}
                     style={{
 
-                      pointerEvents: resendEnabled ? "auto" : "none", // Disable the click event if not enabled
+                      pointerEvents: resendEnabled ? "auto" : "none", 
                     }}
                   >
                     Resend
@@ -187,7 +187,7 @@ const SelectAccountType = () => {
             )}
             {step === 4 && (
               <div className="personalInfoInput">
-                <div>
+                <div className="Name">
                   <label>Name</label>
                   <input
                     type="text"
@@ -196,7 +196,7 @@ const SelectAccountType = () => {
                     onChange={(e) => setPersonalInfo({ ...personalInfo, name: e.target.value })}
                   />
                 </div>
-                <div>
+                <div className="Email">
                   <label>Email</label>
                   <input
                     type="email"
@@ -205,7 +205,7 @@ const SelectAccountType = () => {
                     onChange={(e) => setPersonalInfo({ ...personalInfo, email: e.target.value })}
                   />
                 </div>
-                <div>
+                <div className="Password">
                   <label>Password</label>
                   <div className="passwordInput">
                     <input
